@@ -14,9 +14,9 @@
     { "image": "013.jpg", "price": 9000 },
     { "image": "014.jpg", "price": 13000 },
     { "image": "015.jpg", "price": 3000 },
-    { "image": "016.jpg", "price": 1950 },
-    { "image": "017.jpg", "price": 2750 },
-    { "image": "018.jpg", "price": 3250 },
-    { "image": "019.jpg", "price": 1800 },
-    { "image": "020.jpg", "price": 2000 }
+    { "image": "016.jpg", "price": 11000 },
+    { "image": "017.jpg", "price": 9000 },
+    { "image": "018.jpg", "price": 11000 },
+    { "image": "019.jpg", "price": 20000 },
+    { "image": "020.jpg", "price": 13000 }
 ]
