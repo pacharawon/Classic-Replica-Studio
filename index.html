@@ -20,6 +20,16 @@
             gap: 10px;
             margin-top: 20px;
         }
+        .gallery .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 160px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
         .gallery img {
             width: 150px;
             height: 100px;
@@ -30,6 +40,12 @@
         }
         .gallery img:hover {
             transform: scale(1.1);
+        }
+        .price {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
         }
         .lightbox {
             position: fixed;
@@ -70,14 +86,24 @@
             fetch("images.json")
                 .then(response => response.json())
                 .then(images => {
-                    images.forEach(image => {
+                    images.forEach(item => {
+                        let container = document.createElement("div");
+                        container.classList.add("item");
+                        
                         let imgElement = document.createElement("img");
-                        imgElement.src = image;
+                        imgElement.src = item.image;
                         imgElement.alt = "Gallery Image";
                         imgElement.onclick = function () {
-                            openLightbox(image);
+                            openLightbox(item.image);
                         };
-                        gallery.appendChild(imgElement);
+                        
+                        let priceElement = document.createElement("div");
+                        priceElement.classList.add("price");
+                        priceElement.textContent = `฿${item.price}`;
+                        
+                        container.appendChild(imgElement);
+                        container.appendChild(priceElement);
+                        gallery.appendChild(container);
                     });
                 })
                 .catch(error => console.error("Error loading images: ", error));
