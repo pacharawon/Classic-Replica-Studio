@@ -66,31 +66,21 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const gallery = document.getElementById("gallery");
-            const imageExtensions = ["jpg", "jpeg", "png", "gif"];
             
-            fetchImages();
-            
-            function fetchImages() {
-                fetch("image-list.php") // Fetches dynamically generated JSON from server
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Network response was not ok");
-                        }
-                        return response.json();
-                    })
-                    .then(images => {
-                        images.forEach(image => {
-                            let imgElement = document.createElement("img");
-                            imgElement.src = image;
-                            imgElement.alt = "Gallery Image";
-                            imgElement.onclick = function () {
-                                openLightbox(image);
-                            };
-                            gallery.appendChild(imgElement);
-                        });
-                    })
-                    .catch(error => console.error("Error loading images: ", error));
-            }
+            fetch("images.json")
+                .then(response => response.json())
+                .then(images => {
+                    images.forEach(image => {
+                        let imgElement = document.createElement("img");
+                        imgElement.src = image;
+                        imgElement.alt = "Gallery Image";
+                        imgElement.onclick = function () {
+                            openLightbox(image);
+                        };
+                        gallery.appendChild(imgElement);
+                    });
+                })
+                .catch(error => console.error("Error loading images: ", error));
         });
         
         function openLightbox(imageSrc) {
